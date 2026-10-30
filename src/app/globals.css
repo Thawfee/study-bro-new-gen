@@ -1,0 +1,221 @@
+@import "tailwindcss";
+
+:root,
+:root.dark {
+  color-scheme: dark;
+
+  --bg: #070b14;
+  --bg-elev: #0f1525;
+  --surface: rgba(255, 255, 255, 0.055);
+  --surface-2: rgba(255, 255, 255, 0.085);
+  --border: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.16);
+
+  --text: #edf2ff;
+  --text-dim: #9ca9c8;
+  --text-faint: #69789a;
+
+  --brand: #8b5cf6;
+  --brand-2: #6366f1;
+  --brand-text: #c4b5fd;
+  --accent: #22d3ee;
+  --good: #34d399;
+  --warn: #fbbf24;
+  --bad: #fb7185;
+
+  --shadow: rgba(0, 0, 0, 0.58);
+  --ambient-1: rgba(139, 92, 246, 0.10);
+  --ambient-2: rgba(34, 211, 238, 0.05);
+  --ambient-3: rgba(99, 102, 241, 0.07);
+}
+
+:root.light {
+  color-scheme: light;
+
+  --bg: #f5f7fc;
+  --bg-elev: #ffffff;
+  --surface: rgba(15, 23, 42, 0.035);
+  --surface-2: rgba(15, 23, 42, 0.06);
+  --border: rgba(15, 23, 42, 0.10);
+  --border-strong: rgba(15, 23, 42, 0.16);
+
+  --text: #0f172a;
+  --text-dim: #475569;
+  --text-faint: #94a3b8;
+
+  --brand: #7c3aed;
+  --brand-2: #4f46e5;
+  --brand-text: #6d28d9;
+  --accent: #0891b2;
+  --good: #059669;
+  --warn: #d97706;
+  --bad: #e11d48;
+
+  --shadow: rgba(15, 23, 42, 0.12);
+  --ambient-1: rgba(139, 92, 246, 0.10);
+  --ambient-2: rgba(34, 211, 238, 0.08);
+  --ambient-3: rgba(99, 102, 241, 0.08);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-elev: var(--bg-elev);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-text-dim: var(--text-dim);
+  --color-brand: var(--brand);
+  --color-brand-2: var(--brand-2);
+  --color-accent: var(--accent);
+  --color-good: var(--good);
+  --color-warn: var(--warn);
+  --color-bad: var(--bad);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--bg);
+}
+
+body {
+  background:
+    radial-gradient(60rem 40rem at 10% -10%, var(--ambient-1), transparent 60%),
+    radial-gradient(50rem 40rem at 100% 0%, var(--ambient-2), transparent 55%),
+    radial-gradient(60rem 50rem at 50% 120%, var(--ambient-3), transparent 60%),
+    var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+
+.bg-ambient {
+  position: relative;
+  isolation: isolate;
+}
+
+.glass {
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.glass-strong {
+  background: color-mix(in srgb, var(--bg-elev) 82%, transparent);
+  border: 1px solid var(--border-strong);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.1rem;
+  background: color-mix(in srgb, var(--surface) 96%, transparent);
+  border: 1px solid var(--border);
+  box-shadow: 0 18px 40px -30px var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+:root.light .card {
+  background: color-mix(in srgb, var(--bg-elev) 92%, transparent);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 30px -16px rgba(15, 23, 42, 0.12);
+}
+
+.gradient-text {
+  background: linear-gradient(100deg, var(--brand) 0%, var(--brand-2) 45%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+:where(a, button, [role="button"], input, select, textarea):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 0.75rem;
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb {
+  background: var(--surface-2);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes scaleIn { from { opacity: 0; transform: scale(0.94); } to { opacity: 1; transform: scale(1); } }
+@keyframes pulseRing {
+  0% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.5); }
+  70% { box-shadow: 0 0 0 12px rgba(52, 211, 153, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+}
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes shimmer { 100% { transform: translateX(100%); } }
+
+.animate-fade-in { animation: fadeIn 0.5s ease both; }
+.animate-fade-up { animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-scale-in { animation: scaleIn 0.28s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-float { animation: float 6s ease-in-out infinite; }
+.pulse-dot { animation: pulseRing 2s infinite; }
+
+.stagger > * {
+  animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--i, 0) * 70ms);
+}
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface);
+  border-radius: 0.75rem;
+}
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, var(--surface-2), transparent);
+  animation: shimmer 1.4s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------------- AI Coach ---------------- */
+@keyframes confettiFall {
+  0% { transform: translate3d(0, -10px, 0) rotate(0deg); opacity: 1; }
+  100% { transform: translate3d(var(--dx, 0px), 140px, 0) rotate(var(--rot, 360deg)); opacity: 0; }
+}
+@keyframes breathe {
+  0%, 100% { transform: scale(0.72); opacity: 0.65; }
+  50% { transform: scale(1); opacity: 1; }
+}
+.confetti-piece {
+  position: absolute;
+  top: 0;
+  width: 7px;
+  height: 11px;
+  border-radius: 2px;
+  animation: confettiFall 1.6s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+  animation-delay: var(--delay, 0ms);
+  pointer-events: none;
+}
+.animate-breathe { animation: breathe 8s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .confetti-piece { display: none; }
+  .animate-breathe { animation: none; }
+}
